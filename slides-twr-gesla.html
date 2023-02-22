@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Case Studies in Data Science Workflow</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Fernando Mayer (Maynooth University)" />
+    <meta name="date" content="2022-10-07" />
+    <script src="slides-twr-gesla_files/header-attrs-2.20/header-attrs.js"></script>
+    <link href="slides-twr-gesla_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="slides-twr-gesla_files/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="config/sydney.css" type="text/css" />
+    <link rel="stylesheet" href="config/sydney-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# <del>Case Studies in</del> Data Science Workflow
+]
+.author[
+### Fernando Mayer (Maynooth University)
+]
+.date[
+### 2022-10-07
+]
+
+---
+
+
+
+
+# Outline
+
+&lt;br&gt;
+
+.pull-left[
+What I expect you to know by the end of this talk
+
+- What is the general data science workflow
+- Know what are the tools available for the data scientist
+]
+.pull-right[
+What you'll definitely not know by the end
+
+- How to use any of this tools
+  - Sorry, we would need a few days for that
+]
+
+
+---
+class: center, middle, inverse
+# Let's start with a failure
+
+---
+# The Duke trial saga
+
+.pull-left[
+
+Anil Potti *et al*: A Genomic Strategy to Refine Prognosis in
+Early-Stage Non–Small-Cell Lung Cancer. *The New England Journal of
+Medicine*. 2006.
+
+- Prediction of lung cancer evolution
+
+Anil Potti *et al*: Genomic signatures to guide the use of
+chemotherapeutics. *Nature Medicine*. 2006.
+
+- "Best" chemotherapy to cancer patients
+]
+.pull-right[
+- Duke researchers started **three clinical trials**
+- Researchers from **MD Anderson Cancer Centre** tried to apply the new
+  technique, with no success
+- They found several problems in Duke's group data
+- After investigation, the clinical trials had to be closed
+- It turned out that one of the authors was involved with the biomedic
+industry
+]
+
+.footnotesize[
+- [An array of errors](https://www.economist.com/node/21528593). The
+  Economist, 2011.
+- [How Bright Promise in Cancer Testing Fell
+  Apart](https://www.nytimes.com/2011/07/08/health/research/08genes.html).
+  The New York Times, 2011.
+]
+
+---
+class: center, middle, inverse
+# How to avoid this type of failure
+
+---
+# Avoiding failures
+
+.pull-left[
+- Know what you're doing
+- Know the **question** being asked
+- Know the **type of question** being asked
+- Know how to **approach** the question
+- Know the **methods** to answer the question
+- Know the **tools** to develop the methods
+- Know how to **communicate** the results
+- Know how to make the results **reproducible**
+- Know how to **share** the results
+]
+.pull-right[
+- **Adopt a workflow**
+  - There are lots of them
+  - Stick with one and go for it
+  - There's no "best" workflow
+
+- **Use appropriate methods**
+  - *Data science as art*
+
+- **Use the appropriate tools**
+  - Automate everything
+  - Version control your files
+  - Use software that improves reproducibility
+]
+
+---
+class: center, middle, inverse
+# Types of questions
+
+---
+# Types of questions
+
+&gt; Mistaking the type of question being considered is the most common error
+in data analysis (Leek &amp; Peng, 2015)
+
+&lt;br&gt;
+
+Any specific data analysis can be broadly classified into one of six
+types:
+
+1. Descriptive
+2. Exploratory
+3. Inferential
+4. Predictive
+5. Causal
+6. Mechanistic
+
+---
+# Types of questions (Leek &amp; Peng, 2015)
+
+&lt;img src="img/questions.jpeg" width="55%" style="display: block; margin: auto;" /&gt;
+
+---
+class: center, middle, inverse
+# Data Science workflows
+
+---
+# Data Science workflows
+
+.pull-left[
+- Data analysis **is not** a linear, one-step-after-the-other process
+
+- Data analysis **is** a highly iterative and non-linear process
+
+- Information is learned at each step
+  - Informs whether (and how) to refine, the step that was just
+performed
+  - Informs whether (and how) to proceed to the next step
+
+]
+.pull-right[
+There are 5 core activities of data analysis:
+
+1. Stating and refining the question
+2. Exploring the data
+3. Building formal statistical models
+4. Interpreting the results
+5. Communicating the results
+]
+
+---
+# Epicycle workflow (Peng &amp; Matsui, 2018)
+
+.pull-left[
+
+For each of the 5 core activities, the following steps are critical
+
+1. Set expectations
+2. Collect data, and compare with expectations
+3. Revise expectations or fix the data
+
+Iterating through this 3-step process is called the **epicycle of data
+analysis**
+
+&lt;!-- As you go through every stage of an analysis, you will need to go --&gt;
+&lt;!-- through the epicycle to continuously refine your question, your --&gt;
+&lt;!-- exploratory data analysis, your formal models, your interpretation, and --&gt;
+&lt;!-- your communication. --&gt;
+
+]
+.pull-right[
+&lt;img src="img/epicycles.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+# Harvard workflow (Pfister, Blitzstein, Kaynig)
+
+.pull-left[
+&lt;br&gt;
+&lt;br&gt;
+- Basically the same thing (but in "clouds" instead of "wheels")
+
+- All the others are just variants of these
+]
+
+.pull-right[
+&lt;img src="img/harvard.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+# Box, Hunter &amp; Hunter (2005) feedback loop ("workflow")
+
+&lt;br&gt;
+
+&lt;img src="img/feedback-loop.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+class: center, middle, inverse
+# Data analysis as art
+
+---
+# Data analysis as art
+
+&gt; *Science is knowledge which we understand so well that we can teach it
+to a computer*.
+&gt; *Everything else is art.*
+
+&gt; Donald Knuth, 1974
+
+.pull-left[
+
+- An analyst's data analysis can be compared to a songwriter's
+  composition
+
+- The methods were already taught to the computer
+
+- We have the tools and the theory, but is up to each analyst to decide
+  how to put things together
+
+- That's the "spark of creativity", and that may not be easy to describe
+]
+
+.pull-right[
+&lt;img src="img/knuth.jpg" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+class: center, middle, inverse
+# Tools for a collaborative workflow
+
+
+---
+# Tools for a collaborative workflow
+
+
+The key tools are the ones that makes all the steps **reproducible** by
+  **anyone** in your team
+
+&lt;br&gt;
+
+.pull-left-40[
+1. Make it reproducible to you first!
+
+2. Make it reproducible to your team
+
+3. Make it reproducible to anyone else
+]
+.pull-right-60[
+&gt; *A scientific project is *computationally reproducible* if another
+researcher (**including the future you**) is able to recreate all the
+results, given only a set of files and instructions.*
+
+&gt; Justin Kitzes (2018)
+]
+
+
+---
+# Replicability vs reproducibility
+
+.pull-left[
+## Replication
+&lt;img src="img/replication.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+## Reproduction
+&lt;img src="img/reproduction.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+# Reproducibility spectrum
+
+- But, replicability is **hard**! (Sometimes even **impossible**!)
+
+- So, we have two options
+
+  1. Do nothing
+  2. Reproduce the study
+
+- The general idea is to create a **minimum standard** for judging
+scientific claims ([Peng, 2011,
+*Science*](http://science.sciencemag.org/content/334/6060/1226.full))
+
+
+&lt;img src="img/F1.large.jpg" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+# Reproducibility in science
+
+&lt;br&gt;
+
+If we already know the result, then why?
+
+- Pattern for judging scientific claims
+
+- Validate a data analysis
+
+- Different views of the methods (thar art part)
+
+- Avoid duplicated effort
+
+- Improves team work
+
+
+---
+class: center, middle, inverse
+# Elements of reproducibility
+
+---
+# Elements of reproducibility
+
+.pull-left-60[
+1\. **Data**
+  - Must be provided the exact same way it was used in the analysis
+  - If raw data was processed, both the raw data and the script that
+  processed it must be provided
+
+2\. **Code**
+  - This automatically excludes point-and-click software
+  - It must be executable all at once
+  - If there are sets of files, then you need something to assure that
+    they will be executed in the correct order
+  - Make sure that all needed packages/software are installed (possibly
+    in specific versions)
+]
+.pull-right-40[
+3\. **Documentation**
+  - Describe to humans what the code is doing (don't make people guess)
+  - Describe the results
+
+4\. **Distribution**
+  - This could be to you, to your team, to your boss, or to the World
+  - Share in a way that anyone can download and reproduce it
+]
+
+
+---
+exclude: true
+# Tools for reproducibility
+
+## Publicar dados e códigos não é necessariamente uma tarefa trivial
+
+.pull-left[
+### Problemas comuns
+
+- Muitos autores simplesmente "colocam" arquivos na *web*.
+- Existem jornais que disponibilizam materiais suplementares, mas que
+  sabidamente são desorganizados ou falhos.
+- Mesmo quando dados e códigos estão disponíveis, o leitor ainda tem que
+  baixar dados e códigos, e então tentar juntar tudo, uma tarefa que
+  geralmente não é fácil e desencoraja a maioria das pessoas.
+- O leitor pode não ter os mesmos recursos computacionais que o
+  autor.
+
+]
+.pull-right[
+Algumas dicas para ajudar a tornar um projeto reproduzível:
+
+1. Documente tudo!
+2. Tudo é um arquivo (de texto)
+3. Todos os arquivos devem poder ser lidos por humanos
+4. Organize e "amarre" seus arquivos de forma apropriada
+5. Tenha um plano para organizar, armazenar, e tornar seus arquivos
+   disponíveis
+
+]
+
+---
+class: center, middle, inverse
+# Tools for reproducibility
+
+---
+# Tools for reproducibility
+
+.pull-left-60[
+&lt;br&gt;
+&lt;br&gt;
+&lt;img src="img/nature_toolkit.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right-40[
+[Nature, 2018](https://www.nature.com/articles/d41586-018-05990-5)
+
+- Use code
+- Go open-source
+- Track your versions
+- Document your analyses
+- Automate
+- Replicate your environment
+- Archive your data
+- Get help. [Software Carpentry](https://software-carpentry.org/).
+]
+
+---
+# Track your versions: What it isn't
+
+.pull-left[
+### Cloud Storage
+
+- Dropbox
+- Google Drive
+- MS One
+- And many others
+
+]
+.pull-right[
+&lt;img src="img/final.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+# Track your versions: What it is
+
+.pull-left[
+### Version Control Systems (VCS)
+
+- Git
+- Subversion (SVN)
+- Mercurial
+- And many others
+
+Use hosting servers to share and collaborate
+
+- GitHub
+- Gitlab
+- Bitbucket
+- And many others
+
+]
+.pull-right[
+&lt;img src="img/git-flow.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+# Document your analyses: use dynamic documents
+
+.pull-left-60[
+- This concept dates back to 1984, when Donald Knuth (again) defined
+  (and actually invented) what **literate programming** is
+- It is a combination of a **markup language** (LaTeX, Markdown, HTML,
+  etc) and one (or several) **programming languages**
+  - Yes, you can mix R, Python, Bash, C, etc in the same document!
+- When the document is compiled, the code is executed and you get an
+  output (PDF, HTML, etc) with tables, figures, ...
+]
+.pull-right-40[
+&lt;br&gt;
+&gt; *Instead of imagining that our main task is to instruct a computer what
+&gt; to do, let us concentrate rather on explaining to humans what we want
+&gt; the computer to do.*
+&gt;
+&gt; Donald Knuth, 1984
+]
+
+---
+# Document your analyses: use dynamic documents
+
+.pull-left-40[
+- **Sweave**
+  - It's in R since the beginning of times
+  - Allows only LaTeX as markup language
+  - Only R as programming language
+- **knitr**
+  - Allows other markup languages (Markdown, HTML)
+  - Allows many (14+) programming languages
+
+]
+.pull-right-60[
+- **rmarkdown**
+  - The "workhorse" is still knitr
+  - Powered by [Pandoc](https://pandoc.org/), a universal document
+    converter
+  - It is Pandoc that actually produces the final outputs in different
+    formats
+  &lt;!-- - There are many variations of rmarkdown: bookdown, blogdown, --&gt;
+  &lt;!--   thesisdown, etc --&gt;
+- **Quarto**
+  - Is a stand-alone software for scientific publishing
+  - Built on Pandoc, with many ideas borrowed from rmarkdown
+  - Makes dynamic documents widely available, as it does not rely only
+    in R and R packages
+]
+
+---
+# Automate: two types of automation
+
+.pull-left[
+### Code level
+- Create scripts for pre-processing data
+- Create functions to execute repetitive tasks
+  - Bash (Shell Linux/Unix) is your friend here
+- Create a routine to run scripts in a specific order
+  - Create a [MAKEFILE](https://opensource.com/article/18/8/what-how-makefile)
+]
+
+.pull-right[
+### Deploy level
+- Use Continuous Integration (CI) or Continuous Delivery (CD) platforms
+to automate, test and deploy your project
+- Your routines will run in an external, pristine environment to avoid
+the famous
+   - "*but it works on my computer*..."
+- Some examples:
+  - Github Actions
+  - Gitlab CI
+  - Travis CI
+]
+
+---
+# Replicate your environment
+
+.pull-left[
+**Virtual environments**
+
+- Makes a project self-contained (or almost) in terms of packages
+- Easy to use and record all packages used and **in their specific versions**
+- Recorded packages are downloaded and installed in the first use
+  - In R: `renv`
+  - In Python: `venv`
+]
+
+.pull-right[
+**Container virtualisation**
+
+- Virtualisation of an environment at the **operating system** level
+- Containers are isolated from each other and can have their own
+  software in any specific version
+- [Docker](https://www.docker.com/) is the main tool
+]
+
+**In the reproducibility spectrum:**
+.center.content-box-purple[
+Script &lt; Script+Data &lt; renv &lt; Docker &lt; renv+Docker
+]
+
+---
+# Replicate your environment: renv
+
+.pull-left[
+### The problem
+&lt;br&gt;
+&lt;img src="img/shared-library.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+### The solution
+&lt;br&gt;
+&lt;img src="img/package-cache.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+# Replicate your environment: containers
+
+&lt;br&gt;
+
+&lt;img src="img/containers.jpg" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="img/meme.jpg" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+# Archive your data
+
+Use **data repositories** to share data (and get the proper credits)
+
+- [figshare](https://figshare.com/)
+  - Allows you to publish figures, tables, videos, data, etc.
+  - Everything gets a **DOI** (Digital Object Identifier), so it can be
+  cited
+- [zenodo](https://zenodo.org/)
+  - Publish text and data
+  - Also has DOI and link researchers with [Orcid](https://orcid.org/).
+- [Nature recommended data
+  repositories](https://www.nature.com/sdata/policies/repositories)
+  - Compilation of several repositories
+- [re3data](https://www.re3data.org/)
+  - *REgistry of REsearch Data REpositories* is a tool to search for
+    open access databases
+
+
+---
+class: center, middle, inverse
+# Don't panic!
+
+---
+# Start by reproducing this slides
+
+https://github.com/fernandomayer/y-isa
+
+&lt;br&gt;
+
+&lt;img src="img/qr-code.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+# Summary
+
+- Track your versions
+  - Git and Github
+- Document your analyses
+  - Dynamic documents
+- Automate
+  - Functions, scripts and MAKEFILE
+- Replicate your environment
+  - renv and/or Docker
+- Archive your data
+  - Zenodo/Figshare
+
+---
+class: center, middle, inverse
+# Thanks!
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
