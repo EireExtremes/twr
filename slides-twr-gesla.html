@@ -175,70 +175,6 @@ class: center, middle, inverse
 ]
 
 ---
-exclude: true
-# Track your versions: What it isn't
-
-.pull-left[
-### What it isn't
-&lt;img src="img/final.png" width="60%" style="display: block; margin: auto;" /&gt;
-]
-
-.pull-right[
-### What it is
-&lt;img src="img/git-flow.png" width="60%" style="display: block; margin: auto;" /&gt;
-]
-
----
-exclude: true
-# Document your analyses: use dynamic documents
-
-.pull-left-60[
-- This concept dates back to 1984, when Donald Knuth (again) defined
-  (and actually invented) what **literate programming** is
-- It is a combination of a **markup language** (LaTeX, Markdown, HTML,
-  etc) and one (or several) **programming languages**
-  - Yes, you can mix R, Python, Bash, C, etc in the same document!
-- When the document is compiled, the code is executed and you get an
-  output (PDF, HTML, etc) with tables, figures, ...
-]
-.pull-right-40[
-&lt;br&gt;
-&gt; *Instead of imagining that our main task is to instruct a computer what
-&gt; to do, let us concentrate rather on explaining to humans what we want
-&gt; the computer to do.*
-&gt;
-&gt; Donald Knuth, 1984
-]
-
-- Sweave, knitr, rmarkdown, Quarto, etc
-
----
-exclude: true
-# Automate: two types of automation
-
-.pull-left[
-### Code level
-- Create scripts for pre-processing data
-- Create functions to execute repetitive tasks
-  - Bash (Shell Linux/Unix) is your friend here
-- Create a routine to run scripts in a specific order
-  - Create a [MAKEFILE](https://opensource.com/article/18/8/what-how-makefile)
-]
-
-.pull-right[
-### Deploy level
-- Use Continuous Integration (CI) or Continuous Delivery (CD) platforms
-to automate, test and deploy your project
-- Your routines will run in an external, pristine environment to avoid
-the famous
-   - "*but it works on my computer*..."
-- Some examples:
-  - Github Actions
-  - Gitlab CI
-  - Travis CI
-]
-
----
 # Replicate your environment
 
 .pull-left[
@@ -285,11 +221,6 @@ Script &lt; Script+Data &lt; renv &lt; Docker &lt; renv+Docker
 &lt;br&gt;
 
 &lt;img src="img/containers.jpg" width="80%" style="display: block; margin: auto;" /&gt;
-
----
-exclude: true
-
-&lt;img src="img/meme.jpg" width="40%" style="display: block; margin: auto;" /&gt;
 
 ---
 # Archive your data
