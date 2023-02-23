@@ -1,7 +1,7 @@
 ---
-title: "~~Case Studies in~~ Data Science Workflow"
-author: "Fernando Mayer (Maynooth University)"
-date: "2022-10-07"
+title: "A reproducible workflow and software tools for working with the Global Extreme Sea Level Analysis (GESLA) dataset"
+author: "Fernando Mayer (Postdoc), Niamh Cahill (PI)"
+date: "2023-02-23"
 output:
   xaringan::moon_reader:
     css: ["default", "config/sydney.css", "config/sydney-fonts.css"]
@@ -22,131 +22,12 @@ BibOptions(check.entries = FALSE,
            bib.style = "authoryear",
            cite.style = "authoryear",
            style = "markdown",
-           hyperlink = FALSE,
+           hyperlink = TRUE,
            dashed = FALSE)
 bib <- ReadBib("config/refs.bib", check = FALSE)
 xaringanExtra::use_xaringan_extra("tachyons")
 ```
 
-# Outline
-
-<br>
-
-.pull-left[
-What I expect you to know by the end of this talk
-
-- What is the general data science workflow
-- Know what are the tools available for the data scientist
-]
-.pull-right[
-What you'll definitely not know by the end
-
-- How to use any of this tools
-  - Sorry, we would need a few days for that
-]
-
-
----
-class: center, middle, inverse
-# Let's start with a failure
-
----
-# The Duke trial saga
-
-.pull-left[
-
-Anil Potti *et al*: A Genomic Strategy to Refine Prognosis in
-Early-Stage Non–Small-Cell Lung Cancer. *The New England Journal of
-Medicine*. 2006.
-
-- Prediction of lung cancer evolution
-
-Anil Potti *et al*: Genomic signatures to guide the use of
-chemotherapeutics. *Nature Medicine*. 2006.
-
-- "Best" chemotherapy to cancer patients
-]
-.pull-right[
-- Duke researchers started **three clinical trials**
-- Researchers from **MD Anderson Cancer Centre** tried to apply the new
-  technique, with no success
-- They found several problems in Duke's group data
-- After investigation, the clinical trials had to be closed
-- It turned out that one of the authors was involved with the biomedic
-industry
-]
-
-.footnotesize[
-- [An array of errors](https://www.economist.com/node/21528593). The
-  Economist, 2011.
-- [How Bright Promise in Cancer Testing Fell
-  Apart](https://www.nytimes.com/2011/07/08/health/research/08genes.html).
-  The New York Times, 2011.
-]
-
----
-class: center, middle, inverse
-# How to avoid this type of failure
-
----
-# Avoiding failures
-
-.pull-left[
-- Know what you're doing
-- Know the **question** being asked
-- Know the **type of question** being asked
-- Know how to **approach** the question
-- Know the **methods** to answer the question
-- Know the **tools** to develop the methods
-- Know how to **communicate** the results
-- Know how to make the results **reproducible**
-- Know how to **share** the results
-]
-.pull-right[
-- **Adopt a workflow**
-  - There are lots of them
-  - Stick with one and go for it
-  - There's no "best" workflow
-
-- **Use appropriate methods**
-  - *Data science as art*
-
-- **Use the appropriate tools**
-  - Automate everything
-  - Version control your files
-  - Use software that improves reproducibility
-]
-
----
-class: center, middle, inverse
-# Types of questions
-
----
-# Types of questions
-
-> Mistaking the type of question being considered is the most common error
-in data analysis (Leek & Peng, 2015)
-
-<br>
-
-Any specific data analysis can be broadly classified into one of six
-types:
-
-1. Descriptive
-2. Exploratory
-3. Inferential
-4. Predictive
-5. Causal
-6. Mechanistic
-
----
-# Types of questions (Leek & Peng, 2015)
-
-```{r, out.width='55%'}
-knitr::include_graphics("img/questions.jpeg")
-```
-
----
 class: center, middle, inverse
 # Data Science workflows
 
@@ -159,9 +40,9 @@ class: center, middle, inverse
 - Data analysis **is** a highly iterative and non-linear process
 
 - Information is learned at each step
-  - Informs whether (and how) to refine, the step that was just
+  - Informs whether (and how) to **refine**, the step that was just
 performed
-  - Informs whether (and how) to proceed to the next step
+  - Informs whether (and how) to **proceed** to the next step
 
 ]
 .pull-right[
@@ -188,162 +69,12 @@ For each of the 5 core activities, the following steps are critical
 Iterating through this 3-step process is called the **epicycle of data
 analysis**
 
-<!-- As you go through every stage of an analysis, you will need to go -->
-<!-- through the epicycle to continuously refine your question, your -->
-<!-- exploratory data analysis, your formal models, your interpretation, and -->
-<!-- your communication. -->
-
 ]
 .pull-right[
 ```{r, out.width='70%'}
 knitr::include_graphics("img/epicycles.png")
 ```
 ]
-
----
-# Harvard workflow (Pfister, Blitzstein, Kaynig)
-
-.pull-left[
-<br>
-<br>
-- Basically the same thing (but in "clouds" instead of "wheels")
-
-- All the others are just variants of these
-]
-
-.pull-right[
-```{r, out.width='90%'}
-knitr::include_graphics("img/harvard.png")
-```
-]
-
-
----
-# Box, Hunter & Hunter (2005) feedback loop ("workflow")
-
-<br>
-
-```{r, out.width='60%'}
-knitr::include_graphics("img/feedback-loop.png")
-```
-
----
-class: center, middle, inverse
-# Data analysis as art
-
----
-# Data analysis as art
-
-> *Science is knowledge which we understand so well that we can teach it
-to a computer*.
-> *Everything else is art.*
-
-> Donald Knuth, 1974
-
-.pull-left[
-
-- An analyst's data analysis can be compared to a songwriter's
-  composition
-
-- The methods were already taught to the computer
-
-- We have the tools and the theory, but is up to each analyst to decide
-  how to put things together
-
-- That's the "spark of creativity", and that may not be easy to describe
-]
-
-.pull-right[
-```{r, out.width='60%'}
-knitr::include_graphics("img/knuth.jpg")
-```
-]
-
-
----
-class: center, middle, inverse
-# Tools for a collaborative workflow
-
-
----
-# Tools for a collaborative workflow
-
-
-The key tools are the ones that makes all the steps **reproducible** by
-  **anyone** in your team
-
-<br>
-
-.pull-left-40[
-1. Make it reproducible to you first!
-
-2. Make it reproducible to your team
-
-3. Make it reproducible to anyone else
-]
-.pull-right-60[
-> *A scientific project is *computationally reproducible* if another
-researcher (**including the future you**) is able to recreate all the
-results, given only a set of files and instructions.*
-
-> Justin Kitzes (2018)
-]
-
-
----
-# Replicability vs reproducibility
-
-.pull-left[
-## Replication
-```{r, out.width='80%'}
-knitr::include_graphics("img/replication.png")
-```
-]
-
-.pull-right[
-## Reproduction
-```{r, out.width='80%'}
-knitr::include_graphics("img/reproduction.png")
-```
-]
-
-
----
-# Reproducibility spectrum
-
-- But, replicability is **hard**! (Sometimes even **impossible**!)
-
-- So, we have two options
-
-  1. Do nothing
-  2. Reproduce the study
-
-- The general idea is to create a **minimum standard** for judging
-scientific claims ([Peng, 2011,
-*Science*](http://science.sciencemag.org/content/334/6060/1226.full))
-
-
-```{r, out.width='70%', echo=FALSE}
-knitr::include_graphics("img/F1.large.jpg")
-```
-
----
-# Reproducibility in science
-
-<br>
-
-If we already know the result, then why?
-
-- Pattern for judging scientific claims
-
-- Validate a data analysis
-
-- Different views of the methods (thar art part)
-
-- Avoid duplicated effort
-
-- Improves team work
-
 
 ---
 class: center, middle, inverse
@@ -378,42 +109,53 @@ class: center, middle, inverse
 
 
 ---
-exclude: true
-# Tools for reproducibility
+# Elements of reproducibility
 
-## Publicar dados e códigos não é necessariamente uma tarefa trivial
+The key tools are the ones that makes all the steps **reproducible** by
+  **anyone** in your team
 
-.pull-left[
-### Problemas comuns
+<br>
 
-- Muitos autores simplesmente "colocam" arquivos na *web*.
-- Existem jornais que disponibilizam materiais suplementares, mas que
-  sabidamente são desorganizados ou falhos.
-- Mesmo quando dados e códigos estão disponíveis, o leitor ainda tem que
-  baixar dados e códigos, e então tentar juntar tudo, uma tarefa que
-  geralmente não é fácil e desencoraja a maioria das pessoas.
-- O leitor pode não ter os mesmos recursos computacionais que o
-  autor.
+.pull-left-40[
+1. Make it reproducible to you first!
 
+2. Make it reproducible to your team
+
+3. Make it reproducible to anyone else
 ]
-.pull-right[
-Algumas dicas para ajudar a tornar um projeto reproduzível:
+.pull-right-60[
+> *A scientific project is *computationally reproducible* if another
+researcher (**including the future you**) is able to recreate all the
+results, given only a set of files and instructions.*
 
-1. Documente tudo!
-2. Tudo é um arquivo (de texto)
-3. Todos os arquivos devem poder ser lidos por humanos
-4. Organize e "amarre" seus arquivos de forma apropriada
-5. Tenha um plano para organizar, armazenar, e tornar seus arquivos
-   disponíveis
-
+> Justin Kitzes (2018)
 ]
+
+---
+# Reproducibility spectrum
+
+- **Replicability is hard**! (Sometimes even **impossible**!)
+
+- So, we have two options
+
+  1. Do nothing
+  2. Reproduce the study
+
+- The general idea is to create a **minimum standard** for judging
+scientific claims ([Peng, 2011,
+*Science*](http://science.sciencemag.org/content/334/6060/1226.full))
+
+
+```{r, out.width='70%', echo=FALSE}
+knitr::include_graphics("img/F1.large.jpg")
+```
 
 ---
 class: center, middle, inverse
-# Tools for reproducibility
+# Tools for a collaborative workflow
 
 ---
-# Tools for reproducibility
+# Tools for a collaborative workflow
 
 .pull-left-60[
 <br>
@@ -431,55 +173,31 @@ knitr::include_graphics("img/nature_toolkit.png")
 - Track your versions
 - Document your analyses
 - Automate
-- Replicate your environment
-- Archive your data
+- **Replicate your environment**
+- **Archive your data**
 - Get help. [Software Carpentry](https://software-carpentry.org/).
 ]
 
 ---
+exclude: true
 # Track your versions: What it isn't
 
 .pull-left[
-### Cloud Storage
-
-- Dropbox
-- Google Drive
-- MS One
-- And many others
-
-]
-.pull-right[
-```{r, out.width='80%'}
+### What it isn't
+```{r, out.width='60%'}
 knitr::include_graphics("img/final.png")
 ```
 ]
 
----
-# Track your versions: What it is
-
-.pull-left[
-### Version Control Systems (VCS)
-
-- Git
-- Subversion (SVN)
-- Mercurial
-- And many others
-
-Use hosting servers to share and collaborate
-
-- GitHub
-- Gitlab
-- Bitbucket
-- And many others
-
-]
 .pull-right[
-```{r, out.width='80%'}
+### What it is
+```{r, out.width='60%'}
 knitr::include_graphics("img/git-flow.png")
 ```
 ]
 
 ---
+exclude: true
 # Document your analyses: use dynamic documents
 
 .pull-left-60[
@@ -500,36 +218,10 @@ knitr::include_graphics("img/git-flow.png")
 > Donald Knuth, 1984
 ]
 
----
-# Document your analyses: use dynamic documents
-
-.pull-left-40[
-- **Sweave**
-  - It's in R since the beginning of times
-  - Allows only LaTeX as markup language
-  - Only R as programming language
-- **knitr**
-  - Allows other markup languages (Markdown, HTML)
-  - Allows many (14+) programming languages
-
-]
-.pull-right-60[
-- **rmarkdown**
-  - The "workhorse" is still knitr
-  - Powered by [Pandoc](https://pandoc.org/), a universal document
-    converter
-  - It is Pandoc that actually produces the final outputs in different
-    formats
-  <!-- - There are many variations of rmarkdown: bookdown, blogdown, -->
-  <!--   thesisdown, etc -->
-- **Quarto**
-  - Is a stand-alone software for scientific publishing
-  - Built on Pandoc, with many ideas borrowed from rmarkdown
-  - Makes dynamic documents widely available, as it does not rely only
-    in R and R packages
-]
+- Sweave, knitr, rmarkdown, Quarto, etc
 
 ---
+exclude: true
 # Automate: two types of automation
 
 .pull-left[
@@ -609,6 +301,7 @@ knitr::include_graphics("img/containers.jpg")
 ```
 
 ---
+exclude: true
 
 ```{r, out.width='40%'}
 knitr::include_graphics("img/meme.jpg")
@@ -617,51 +310,200 @@ knitr::include_graphics("img/meme.jpg")
 ---
 # Archive your data
 
+.pull-left[
 Use **data repositories** to share data (and get the proper credits)
 
-- [figshare](https://figshare.com/)
-  - Allows you to publish figures, tables, videos, data, etc.
-  - Everything gets a **DOI** (Digital Object Identifier), so it can be
-  cited
-- [zenodo](https://zenodo.org/)
-  - Publish text and data
-  - Also has DOI and link researchers with [Orcid](https://orcid.org/).
+- [figshare](https://figshare.com/): Allows you to publish figures,
+  tables, videos, data, etc.
+- [zenodo](https://zenodo.org/): Publish text and data
 - [Nature recommended data
-  repositories](https://www.nature.com/sdata/policies/repositories)
-  - Compilation of several repositories
-- [re3data](https://www.re3data.org/)
-  - *REgistry of REsearch Data REpositories* is a tool to search for
-    open access databases
+  repositories](https://www.nature.com/sdata/policies/repositories):
+  Compilation of several repositories
+- [re3data](https://www.re3data.org/): *REgistry of REsearch Data
+    REpositories* is a tool to search for open access databases
 
+]
+
+.pull-right[
+Make it **usable** and **accessible**, with universal formats
+
+- Text format (csv, txt, tsv, etc) - but not always possible or feasible
+- Universal formats
+  - SQL and variations
+  - Arrow, Parquet
+]
 
 ---
 class: center, middle, inverse
-# Don't panic!
+# The GESLA dataset
 
 ---
-# Start by reproducing this slides
+# The GESLA dataset
 
-https://github.com/fernandomayer/y-isa
+- The GESLA (Global Extreme Sea Level Analysis) project grew out of the
+interests of several people in learning more about the changes of
+extreme sea levels (Woodworth *et al*, 2016; Haigh *et al*, 2021)
 
-<br>
+- Sea level data were gathered all over the world from 36 data
+  providers
 
-```{r, out.width='40%'}
-knitr::include_graphics("img/qr-code.png")
+- The current version of the database contains 90,713 years of sea level
+  data from 5,119 records
+
+```{r, out.width='65%'}
+knitr::include_graphics("img/gesla-map.png")
 ```
 
 ---
-# Summary
+# The GESLA dataset
 
-- Track your versions
-  - Git and Github
-- Document your analyses
-  - Dynamic documents
-- Automate
-  - Functions, scripts and MAKEFILE
-- Replicate your environment
-  - renv and/or Docker
-- Archive your data
-  - Zenodo/Figshare
+.pull-left[
+- The whole GESLA dataset is distributed as a single zip file of 5.15 GB
+  in size
+- When extracted, there are 5,119 CSV files, totalizing
+  38.72 GB of data
+- There are a Matlab script and a Python script to deal with these files
+  - They are able to read a single file (or a list of them), and made
+    them available in memory
+  - However, due to the huge amount of data in each file, this can be
+    infeasible in any (RAM) language
+]
+
+.pull-right[
+### Our goal
+
+- To standardize the distribution of this dataset
+- To make easier to fetch data without downloading everything
+- To achieve that:
+  - Convert CSV files to a lighter, universal and more efficient file
+    format
+  - Create a web interface with R Shiny to filter the data
+  - Create a companion R package to fetch and deal with this data via an
+    API
+
+]
+
+
+---
+# The Apache Parquet format
+
+.pull-left[
+- From the CSVs and the Python script, the files were converted to the
+  [Apache Parquet](https://parquet.apache.org) format
+- Apache Parquet is an **open source**, column-oriented data file format
+  designed for efficient data storage and retrieval
+- This format can then be read by many languages (R, Python, Matlab,
+etc)
+]
+.pull-right[
+- The Parquet format can be then handled by the [Apache
+  Arrow](https://arrow.apache.org) language for *in-memory* analytics
+- *In-memory* here means that the computations are made efficiently in
+  RAM memory, but **without** actually loading the whole dataset to RAM
+
+```{r}
+#| out.width: 90%
+url <- "https://djnavarro.net/slides-data-thread-2022/img/data-interchange-2.svg"
+knitr::include_graphics(url)
+```
+]
+
+
+---
+# The GESLA dataset
+
+.pull-left-40[
+- After conversion to Parquet, the whole GESLA dataset shrinked to
+  7.03 GB, with the same 5119 files
+
+- Theses files could then be stored in an AWS bucket
+
+- The arrow R package is able to connect with this bucket, and you can
+  make operations locally, without having to download the whole dataset
+]
+
+
+.pull-right-60[
+
+```{r}
+#| eval: false
+#| echo: true
+library("arrow")
+path <- s3_bucket("gesla-dataset/parquet_files",
+                  anonymous = TRUE)
+da <- open_dataset(path, format = "parquet")
+da |> nrow()/1e9
+## [1] 1.172436
+object.size(da)
+## 504 bytes
+```
+
+]
+
+---
+# The GESLA dataset
+
+- The web interface was developed as a "stand-alone" application,
+  querying the AWS bucket
+
+- Users can select subsets of data and download it in CSV or Parquet
+  formats
+
+```{r}
+#| out.width: 90%
+knitr::include_graphics("img/geslaR-app.png")
+```
+
+---
+# The GESLA dataset
+
+.pull-left-40[
+- Besides the Parquet file format, we are using **renv** and:
+  - Developing an API interface with R package **pumbler**
+  - Developing a **docker** image with package, code and data
+]
+
+.pull-right-60[
+```{r}
+#| out.width: 90%
+knitr::include_graphics("img/geslaR-renv.png")
+```
+]
+
+---
+exclude: true
+# References
+
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(bib)
+```
+
+---
+# Acknowledgements
+
+This work has emanated from research conducted with the financial
+support of Science Foundation Ireland and co-funded by GSI under Grant
+number 20/FFP-P/8610.
+
+.pull-left[
+```{r}
+#| out.width: 70%
+knitr::include_graphics("img/geological-survey.png")
+```
+]
+
+.pull-right[
+```{r}
+#| out.width: 70%
+knitr::include_graphics("img/sfi.png")
+```
+]
+
+```{r}
+#| out.width: 20%
+knitr::include_graphics("config/maynooth.png")
+```
+
 
 ---
 class: center, middle, inverse
